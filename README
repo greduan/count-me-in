@@ -1,0 +1,42 @@
+$REPO
+=====
+
+Gittip: https://www.gittip.com/Greduan/
+
+This project may only be useful to me, but I'm sharing it because it may be
+useful to someone else.
+
+Basically it's a counter.  You call it, give it a file and it adds a number to
+whatever the number on that file is.  I usually count stuff by hand on a piece
+of paper, but sometimes I don't have that and I still need to count stuff, so
+I'm making this.
+
+It has one counter per file, I'll probably make it fancy and add stuff where it
+keeps track of the date when that was counted, be able to count more than one
+digit at a time, list the total count nicely, etc.
+
+
+Installation
+------------
+
+You can get the latest stable and/or development version from the GitHub
+repo. <https://github.com/Greduan/count-me-in>
+
+More detailed instructions coming soon.
+
+
+License
+-------
+
+    Copyright © 2014 Greduan <eduan@websharks-inc.com>
+    This work is free. You can redistribute it and/or modify it under the
+    terms of the Do What The Fuck You Want To Public License, Version 2,
+    as published by Sam Hocevar. See the LICENSE file for more details.
+
+
+Author(s) and contributors
+--------------------------
+
+Check the CONTRIBUTORS file for contributors to this project.
+
+For instructions and/or guidelines on contributing check the CONTRIBUTING file.
