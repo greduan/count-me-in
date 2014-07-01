@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var docopt = require('docopt').docopt;
+var CountMeIn = require('..');
+
+var doc = 'Usage: cmi [-d DIR] [-r] NAME NUM' +
+'\n' +
+'\nOptions:' +
+'\n  -h --help    Show this screen.'
+'\n  -r --reduce  NUM removes from the counter instead of increasing it.'
+'\n  -d DIR --directory=DIR  The directory where to store the counter(s) [default: ~/.cmi-counters].' +
+var cli = docopt(doc, {help: true, version: '0.0.0'});
+
