@@ -16,5 +16,20 @@ var cli = docopt(doc, {help: true, version: '0.0.0'});
 var file = path.join(cli['-d'], cli['NAME']);
 // console.log(file);
 
-CountMeIn.readFile(file);
+function appendStrToFile(file, str, cb) {
+	fs.appendFile(file, str, function(err){
+		if (err) return console.error(err);
+		else cb(arguments);
+	});
+}
+
+function readFile(file, cb) {
+	fs.readFile(file, {encoding: 'utf8'}, function(err, data){
+		if (err) {
+			if (err.code === 'ENOENT')
+				return console.error('FILE AND/OR DIRECTORY DOESN\'T EXIST\nThe file will be created but make sure the directory exists...');
+			else return console.error(err);
+		} else return cb(data);
+	});
+}
 
