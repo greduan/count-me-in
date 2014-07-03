@@ -5,13 +5,14 @@ var path = require('path');
 var CountMeIn = require('..');
 var fs = require('fs');
 
-var doc = 'Usage: cmi [-d DIR] [-r] NAME [NUM]' +
+var doc = 'Usage: cmi [-d DIR] [-r] NAME [(NUM | --reset)]' +
 '\n' +
 '\nOptions:' +
 '\n  -h --help  Show this screen.' +
 '\n  -r         NUM removes from the counter instead of increasing it.' +
+'\n  --reset    If used, it makes the count 0.' +
 '\n  -d DIR     The directory where to store the counter(s). [default: .cmi-counters]'
-var cli = docopt(doc, {help: true, version: '0.1.0'});
+var cli = docopt(doc, {help: true, version: '0.2.0'});
 // return console.log(cli);
 
 if (cli['NUM'] === null)
@@ -55,6 +56,16 @@ readFile()
     v
     appendStrToFile()
 */
+
+if (cli['--reset']) {
+	readFile(file, function(data){
+		var resetLine = CountMeIn.makeLine(0);
+		appendStrToFile(file, resetLine, function(a){
+			console.log(resetLine);
+		});
+	});
+	return;
+}
 
 readFile(file, function(data){
 	var lastLineInt = CountMeIn.readLastLine(data);
