@@ -1,0 +1,16 @@
+{
+  "name": "",
+  "version": "0.0.0",
+  "license": "ISC",
+  "main": "./index.js",
+  "scripts": {
+    "test": "tape ./test | tap-dot"
+  },
+  "author": "Greduan <eduan@websharks-inc.com> (http://greduan.com)",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "tap-dot": "^0.2.3",
+    "tape": "^3.0.0"
+  }
+}
