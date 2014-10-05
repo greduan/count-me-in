@@ -1,5 +1,5 @@
 var test = require("tape");
-var main = require(__dirname + "/../lib/main.js");
+var main = require("..");
 
 test("main.getLastNumber: make sure it gets the correct number", function (t) {
 	t.plan(2);
@@ -42,3 +42,5 @@ test("main.newNumber: make sure it returns the correct num in several occassions
 
 	t.end();
 });
+
+// TODO add tests for obj.newLine()
