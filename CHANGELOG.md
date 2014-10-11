@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 
 - `index.js` file now returns the `lib/main.js` file.
 
-## 0.0.0 - 2014-09-30
+## v0.0.0 to v0.3.0
 
-Initial commit, nothing notable here.
+Previous versions.  No incompatible change but the code was re-written so these
+versions don't matter.  They also don't matter because this is a tiny app, not a
+library of any sort.
