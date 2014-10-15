@@ -26,7 +26,7 @@ To install simply clone this repo somewhere, install npm packages `npm install`
 and add an alias to your shell that points to the location of this repo's
 `bin/cmi`.  Something like this:
 
-    alias cmi='/home/greduan/dev/count-me-in/bin/cmi'
+    alias cmi='node /home/greduan/dev/count-me-in/bin/cmi'
 
 Of course replacing that with your actual location.
 

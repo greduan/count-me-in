@@ -22,8 +22,8 @@ var cli = docopt(doc, { help: true, version: '0.4.0' });
 
 // handle some default values for the CLI
 
-var file = pathUtil.resolve(cli['-d'], cli['NAME']);
-//return console.log(file);
+var file = pathUtil.resolve(cli['-d'], cli.NAME);
+cli.NUM = cli.NUM || 1;
 
 // some util functions
 
@@ -31,8 +31,8 @@ function appendStrToFile(file, str, callback) {
     'use strict';
 
     fsUtil.appendFile(file, str, function (err) {
-        if (err) throw err;
-        else callback();
+        if (err) { throw err; }
+        return callback();
     });
 }
 
@@ -46,10 +46,10 @@ function readFile(file, callback) {
                 var firstLine = main.newLine(0);
 
                 appendStrToFile(file, firstLine, function () {
-                    if (err) throw err;
+                    if (err) { throw err; }
                     return console.log(firstLine);
                 });
-            } else throw err;
+            } else { throw err; }
         }
 
         return callback(data);
@@ -59,27 +59,30 @@ function readFile(file, callback) {
 // the CLI logic
 
 if (cli['--set']) {
-    readFile(file, function (data) {
+    readFile(file, function () {
         'use strict';
 
-        var newLine = main.newLine(cli['NUM']);
+        var newLine = main.newLine(cli['--set']);
 
         appendStrToFile(file, newLine, function () {
             return console.log(newLine);
         });
     });
+
+    return;
 }
 
 readFile(file, function (data) {
     'use strict';
 
-    var lastNum = main.getLastNumber(data);
-    var newNum = main.newNumber(lastNum, cli['NUM'], cli['-r']);
-    var newLine = main.newLine(newNum);
+    var lastNum, newNum, newLine;
+    lastNum = main.getLastNumber(data);
+    newNum = main.newNumber(lastNum, cli.NUM, cli['-r']);
+    newLine = main.newLine(newNum);
 
     appendStrToFile(file, newLine, function () {
         return console.log(newLine);
     });
-});
 
-// vim: expandtab:
+    return;
+});

@@ -3,14 +3,15 @@ var shell = require('gulp-shell');
 var jslint = require('gulp-jslint');
 
 gulp.task('jslint', function () {
-    gulp.src(['lib/*.js', 'test/*.js'])
+    gulp.src(['lib/*.js', 'test/*.js', 'bin/cmi.js'])
         .pipe(jslint({
             node: true,
             plusplus: false,
             sloppy: false,
             todo: true,
 
-            errorsOnly: true
+            errorsOnly: true,
+            shebang: true
         }))
         .on('error', function (err) {
             console.error(String(err));
