@@ -3,7 +3,7 @@
 // outside stuff
 var docopt = require('docopt').docopt;
 var pathUtil = require('path');
-var fsUtil = require('fs');
+var fsUtil = require('node-fs-extra');
 
 // inside stuff
 var main = require('..');
@@ -27,34 +27,28 @@ cli.NUM = cli.NUM || 1;
 
 // some util functions
 
-function appendStrToFile(file, str, callback) {
+var appendStrToFile = function (filePath, str, callback) {
     'use strict';
 
-    fsUtil.appendFile(file, str, function (err) {
+    fsUtil.appendFile(filePath, str, function (err) {
         if (err) { throw err; }
         return callback();
     });
-}
+};
 
-function readFile(file, callback) {
+var readFile = function (filePath, callback) {
     'use strict';
 
-    fsUtil.readFile(file, { encoding: 'utf8' }, function (err, data) {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                console.log('FILE AND/OR DIRECTORY DOESN\'T EXIST\nThe file will be created but make sure the directory exists...');
-                var firstLine = main.newLine(0);
+    fsUtil.createFile(filePath, function (err) {
+        if (err) { throw err; }
 
-                appendStrToFile(file, firstLine, function () {
-                    if (err) { throw err; }
-                    return console.log(firstLine);
-                });
-            } else { throw err; }
-        }
+        fsUtil.readFile(filePath, { encoding: 'utf8' }, function (err, contents) {
+            if (err) { throw err; }
 
-        return callback(data);
+            return callback(contents);
+        });
     });
-}
+};
 
 // the CLI logic
 
@@ -68,21 +62,17 @@ if (cli['--set']) {
             return console.log(newLine);
         });
     });
+} else {
+    readFile(file, function (data) {
+        'use strict';
 
-    return;
-}
+        var lastNum, newNum, newLine;
+        lastNum = main.getLastNumber(data);
+        newNum = main.newNumber(lastNum, cli.NUM, cli['-r']);
+        newLine = main.newLine(newNum);
 
-readFile(file, function (data) {
-    'use strict';
-
-    var lastNum, newNum, newLine;
-    lastNum = main.getLastNumber(data);
-    newNum = main.newNumber(lastNum, cli.NUM, cli['-r']);
-    newLine = main.newLine(newNum);
-
-    appendStrToFile(file, newLine, function () {
-        return console.log(newLine);
+        appendStrToFile(file, newLine, function () {
+            return console.log(newLine);
+        });
     });
-
-    return;
-});
+}
