@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - `index.js` file now returns the `lib/main.js` file.
+- Updates to README.md.  Including updated install instructions.  Now uses
+  `npm link` instead of a shell alias.
 
 ## v0.0.0 to v0.3.0
 
