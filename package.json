@@ -1,13 +1,12 @@
 {
   "name": "count-me-in",
-  "version": "0.0.0",
+  "version": "0.4.0",
   "license": "ISC",
   "main": "./index.js",
   "bin": {
     "cmi": "./bin/cmi.js"
   },
   "author": "Greduan <eduan@websharks-inc.com> (http://greduan.com)",
-  "private": true,
   "dependencies": {
     "docopt": "^0.4.1",
     "node-fs-extra": "^0.8.1"
