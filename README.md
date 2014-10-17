@@ -22,13 +22,8 @@ digit at a time, list the total count nicely, etc.
 You can get the latest stable and/or development version from the GitHub
 repo. <https://github.com/Greduan/count-me-in>
 
-To install simply clone this repo somewhere, install npm packages `npm install`
-and add an alias to your shell that points to the location of this repo's
-`bin/cmi`.  Something like this:
-
-    alias cmi='node /home/greduan/dev/count-me-in/bin/cmi'
-
-Of course replacing that with your actual location.
+To install simply clone this repo somewhere, install npm packages with
+`npm install`, `cd` into the repo and run `npm link`.
 
 You can also now install it with NPM, using `npm install -g count-me-in`. :)
 
